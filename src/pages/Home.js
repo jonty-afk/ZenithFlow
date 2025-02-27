@@ -4,13 +4,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="text-center flex flex-col items-center justify-center px-6 relative">
-      {/* Subtle Animated Orb */}
-      <motion.div
-        className="absolute top-0 w-20 h-20 bg-blue-900 rounded-full opacity-20 blur-xl"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      />
+    <div className="text-center flex flex-col items-center justify-center px-6">
       <motion.h1
         className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mt-4 relative z-10"
         initial={{ opacity: 0, y: -20 }}
@@ -22,6 +16,9 @@ const Home = () => {
       <p className="text-gray-300 mt-3 text-lg max-w-xl relative z-10">
         Unleash Wealth on Solana: Stake, Earn, Thrive.
       </p>
+      <p className="text-gray-400 mt-2 text-sm relative z-10">
+        Discover $ZF Genesis Forge & more in Chaos Zone!
+      </p>
       <Link to="/tokenomics">
         <motion.button
           className="mt-6 px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-lg shadow-lg hover:from-blue-600 hover:to-purple-600 transition duration-300 relative z-10"
@@ -29,6 +26,15 @@ const Home = () => {
           whileTap={{ scale: 0.95 }}
         >
           Learn More
+        </motion.button>
+      </Link>
+      <Link to="/chaos">
+        <motion.button
+          className="mt-6 px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg shadow-lg hover:from-purple-600 hover:to-pink-600 transition duration-300 relative z-10"
+          whileHover={{ scale: 1.1, boxShadow: "0 0 20px rgba(236, 72, 153, 0.7)" }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Enter the Zenith Zone
         </motion.button>
       </Link>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 max-w-5xl relative z-10">

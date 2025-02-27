@@ -9,6 +9,13 @@ import Roadmap from "./pages/Roadmap";
 import FAQ from "./pages/FAQ";
 import Staking from "./pages/Staking";
 import Dashboard from "./pages/Dashboard";
+import Chaos from "./pages/Chaos";
+import GenesisForge from "./pages/GenesisForge";
+import EchoChamber from "./pages/EchoChamber";
+import ZenithWheel from "./pages/ZenithWheel";
+import Whisperer from "./pages/Whisperer";
+import CoinVortex from "./pages/CoinVortex"; // Replace CoinFlip
+import TimeCapsule from "./pages/TimeCapsule";
 
 const App = () => {
   const [walletAddress, setWalletAddress] = useState(null);
@@ -20,10 +27,15 @@ const App = () => {
 
   const connectWallet = async () => {
     try {
+      console.log("Attempting to connect wallet...");
       if ("solana" in window) {
+        console.log("Solana detected in window!");
         const provider = window.solana;
+        console.log("Provider:", provider);
         if (provider.isPhantom) {
+          console.log("Phantom detected, connecting...");
           const response = await provider.connect();
+          console.log("Response:", response);
           const publicKey = new PublicKey(response.publicKey.toString());
           setWalletAddress(publicKey.toString());
           const balanceInLamports = await connection.getBalance(publicKey);
@@ -112,7 +124,7 @@ const App = () => {
             </motion.a>
             <motion.button
               className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 10px rgba(59, 130, 246, 0.5)" }}
               whileTap={{ scale: 0.95 }}
               onClick={walletAddress ? disconnectWallet : connectWallet}
             >
@@ -132,6 +144,13 @@ const App = () => {
             <Route path="/roadmap" element={<Roadmap />} />
             <Route path="/staking" element={<Staking staked={staked} setStaked={setStaked} rewards={rewards} setRewards={setRewards} />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/chaos" element={<Chaos walletAddress={walletAddress} balance={balance} connectWallet={connectWallet} />} />
+            <Route path="/chaos/genesis-forge" element={<GenesisForge walletAddress={walletAddress} balance={balance} />} />
+            <Route path="/chaos/echo-chamber" element={<EchoChamber walletAddress={walletAddress} balance={balance} />} />
+            <Route path="/chaos/zenith-wheel" element={<ZenithWheel walletAddress={walletAddress} balance={balance} />} />
+            <Route path="/chaos/whisperer" element={<Whisperer walletAddress={walletAddress} balance={balance} />} />
+            <Route path="/chaos/coin-vortex" element={<CoinVortex walletAddress={walletAddress} balance={balance} />} />
+            <Route path="/chaos/time-capsule" element={<TimeCapsule walletAddress={walletAddress} balance={balance} />} />
           </Routes>
         </div>
 
